@@ -20,6 +20,8 @@ const CurrenciesList = (props) => {
     });
   };
 
+  let showDelete = props.currencies.length > 2;
+
   return (
     <Container>
       <Header as='h2'>Select currency</Header>
@@ -28,7 +30,7 @@ const CurrenciesList = (props) => {
         return (
           <Label key={i}>
             {currency}
-            <Icon name='delete' onClick={() => { removeCurrency(currency) }}/>
+            {showDelete ? <Icon name='delete' onClick={() => { removeCurrency(currency) }}/> : ''}
           </Label>
         )
       })}
