@@ -6,7 +6,6 @@ export default function currencies(state = initialState, action) {
 
   switch (action.type) {
     case GET_RATES_SUCCESS:
-      console.log(action.payload);
       return action.payload
 
     default:

@@ -1,9 +1,7 @@
-import {ADD_CURRENCY, GET_RATES_SUCCESS} from '../constants/actionTypes';
-import axios from 'axios';
+import {ADD_CURRENCY} from '../constants/actionTypes';
+import {REMOVE_CURRENCY} from '../constants/actionTypes';
 
-const URL = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22KZTUSD%2C%20USDKZT%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
-
-export function onAddCurrency(currency) {
+export function addCurrency(currency) {
   return function (dispatch) {
     return new Promise(function(resolve, reject) {
       dispatch({
@@ -12,12 +10,17 @@ export function onAddCurrency(currency) {
       });
       resolve();
     })
+  };
+}
 
-    // axios.get(URL).then(response => {
-    //   dispatch({
-    //     type: GET_RATES_SUCCESS,
-    //     payload: response.data.query.results.rate
-    //   });
-    // });
+export function removeCurrency(currency) {
+  return function (dispatch) {
+    return new Promise(function(resolve, reject) {
+      dispatch({
+        type: REMOVE_CURRENCY,
+        payload: currency
+      });
+      resolve();
+    })
   };
 }
